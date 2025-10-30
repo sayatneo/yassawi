@@ -26,10 +26,11 @@ class HomePage extends StatelessWidget {
                     gradient: AppColors.primaryGradient,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(
-                    Icons.school,
-                    color: Colors.white,
-                    size: 24,
+                  child: Image.asset(
+                    'assets/logo.png',
+                    width: 24,
+                    height: 24,
+                    color: Colors.white, // қажет болса түс фильтрі
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -86,6 +87,22 @@ class HomePage extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return StoryItem(
+                        imageUrl: '',
+                        title: index == 0 ? 'Сіздің' : 'История ${index + 1}',
+                        isAddStory: index == 0,
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),
@@ -112,6 +129,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(height: 12),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: GridView.count(
