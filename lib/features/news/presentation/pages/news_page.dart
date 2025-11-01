@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/news_list_item.dart';
 import '../widgets/featured_news_card.dart';
+import '../widgets/club_item.dart';
+import 'club_detail_page.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
@@ -77,23 +79,166 @@ class _NewsPageState extends State<NewsPage>
   Widget _buildNewsList() {
     return CustomScrollView(
       slivers: [
+        // Clubs Section
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Клубтар',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                height: 130,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  children: [
+                    ClubItem(
+                      name: 'IT Club',
+                      icon: Icons.computer,
+                      color: AppColors.primary,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ClubDetailPage(
+                              clubName: 'IT Club',
+                              icon: Icons.computer,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ClubItem(
+                      name: 'Робототехника',
+                      icon: Icons.smart_toy,
+                      color: AppColors.secondary,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ClubDetailPage(
+                              clubName: 'Робототехника',
+                              icon: Icons.smart_toy,
+                              color: AppColors.secondary,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ClubItem(
+                      name: 'Дебат клубы',
+                      icon: Icons.mic,
+                      color: AppColors.accent,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ClubDetailPage(
+                              clubName: 'Дебат клубы',
+                              icon: Icons.mic,
+                              color: AppColors.accent,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ClubItem(
+                      name: 'Фото клуб',
+                      icon: Icons.camera_alt,
+                      color: Color(0xFFE91E63),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ClubDetailPage(
+                              clubName: 'Фото клуб',
+                              icon: Icons.camera_alt,
+                              color: Color(0xFFE91E63),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ClubItem(
+                      name: 'Шахмат',
+                      icon: Icons.casino,
+                      color: Color(0xFF9C27B0),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ClubDetailPage(
+                              clubName: 'Шахмат',
+                              icon: Icons.casino,
+                              color: Color(0xFF9C27B0),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ClubItem(
+                      name: 'Музыка',
+                      icon: Icons.music_note,
+                      color: Color(0xFFFFA500),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ClubDetailPage(
+                              clubName: 'Музыка',
+                              icon: Icons.music_note,
+                              color: Color(0xFFFFA500),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
+          ),
+        ),
+
         // Featured News
         SliverToBoxAdapter(
-          child: SizedBox(
-            height: 220,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return const FeaturedNewsCard(
-                  imageUrl: '',
-                  title: 'Маңызды жаңалық',
-                  category: 'Оқиғалар',
-                  date: '28 қазан 2025',
-                );
-              },
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Маңызды жаңалықтар',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                height: 220,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return const FeaturedNewsCard(
+                      imageUrl: '',
+                      title: 'Маңызды жаңалық',
+                      category: 'Оқиғалар',
+                      date: '28 қазан 2025',
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../news/presentation/pages/news_detail_page.dart';
 
 class NewsCard extends StatelessWidget {
   final String imageUrl;
@@ -20,7 +21,18 @@ class NewsCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewsDetailPage(
+                title: title,
+                category: 'Оқиғалар',
+                date: date,
+              ),
+            ),
+          );
+        },
         borderRadius: BorderRadius.circular(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

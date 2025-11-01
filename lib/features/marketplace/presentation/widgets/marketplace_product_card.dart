@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../pages/product_detail_page.dart';
 
 class MarketplaceProductCard extends StatelessWidget {
   final String imageUrl;
@@ -21,7 +22,19 @@ class MarketplaceProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailPage(
+                title: title,
+                price: price,
+                seller: seller,
+                rating: rating,
+              ),
+            ),
+          );
+        },
         borderRadius: BorderRadius.circular(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
