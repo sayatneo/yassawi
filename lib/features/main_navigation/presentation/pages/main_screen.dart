@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../marketplace/presentation/pages/marketplace_page.dart';
 import '../../../ai_assistant/presentation/pages/ai_assistant_page.dart';
@@ -28,59 +29,47 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: _pages),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, -5),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            onTap: (index) {
-              setState(() => _currentIndex = index);
-            },
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.surface,
-            selectedItemColor: AppColors.primary,
-            unselectedItemColor: AppColors.textSecondary,
-            selectedFontSize: 12,
-            unselectedFontSize: 12,
-            elevation: 0,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                activeIcon: Icon(Icons.home),
-                label: 'Басты бет',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag_outlined),
-                activeIcon: Icon(Icons.shopping_bag),
-                label: 'Маркетплейс',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.psychology_outlined),
-                activeIcon: Icon(Icons.psychology),
-                label: 'ИИ',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.article_outlined),
-                activeIcon: Icon(Icons.article),
-                label: 'Жаңалықтар',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline),
-                activeIcon: Icon(Icons.person),
-                label: 'Профиль',
-              ),
-            ],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() => _currentIndex = index);
+        },
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColors.surface,
+        selectedItemColor: AppColors.primary,
+        unselectedItemColor: AppColors.textSecondary,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        elevation: 0,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(IconlyBroken.home),
+            activeIcon: Icon(IconlyBroken.home),
+            label: 'Басты бет',
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(IconlyBroken.buy),
+            activeIcon: Icon(IconlyBroken.buy),
+            label: 'Маркетплейс',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(IconlyBroken.discovery),
+            activeIcon: Icon(IconlyBroken.discovery),
+            label: 'ИИ',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(IconlyBroken.paper),
+            activeIcon: Icon(IconlyBroken.paper),
+            label: 'Жаңалықтар',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(IconlyBroken.profile),
+            activeIcon: Icon(IconlyBroken.profile),
+            label: 'Профиль',
+          ),
+        ],
       ),
     );
   }

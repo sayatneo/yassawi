@@ -135,9 +135,11 @@ class HomePage extends StatelessWidget {
                   child: GridView.count(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 12,
-                    crossAxisSpacing: 12,
+                    crossAxisCount: 3,
+                    childAspectRatio: 0.85,
+                    mainAxisSpacing: 18,
+                    crossAxisSpacing: 18,
+                    padding: const EdgeInsets.only(bottom: 8),
                     children: const [
                       ServiceItem(
                         icon: Icons.calendar_today,
@@ -210,17 +212,21 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 SizedBox(
-                  height: 240,
-                  child: ListView.builder(
+                  height: 200,
+                  child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     itemCount: 5,
+                    separatorBuilder: (context, index) => const SizedBox(width: 12),
                     itemBuilder: (context, index) {
-                      return const ProductCard(
-                        imageUrl: '',
-                        title: 'Оқулық',
-                        price: '3500',
-                        rating: 4.5,
+                      return SizedBox(
+                        width: 160,
+                        child: ProductCard(
+                          imageUrl: '',
+                          title: 'Оқулық',
+                          price: '3500',
+                          rating: 4.5,
+                        ),
                       );
                     },
                   ),
