@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../marketplace/presentation/pages/product_detail_page.dart';
 
 class ProductCard extends StatelessWidget {
   final String imageUrl;
@@ -21,29 +20,19 @@ class ProductCard extends StatelessWidget {
     return Container(
       width: 160,
       margin: const EdgeInsets.only(right: 12),
-      child: Card(
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder:
-                    (context) => ProductDetailPage(
-                      title: title,
-                      price: price,
-                      seller: 'Студент',
-                      rating: rating,
-                    ),
-              ),
-            );
-          },
-          borderRadius: BorderRadius.circular(16),
+      child: LayoutBuilder(builder: (context, constraints) {
+        // Make the image take ~58% of available height and the details fill the rest
+        final maxH = constraints.maxHeight.isFinite ? constraints.maxHeight : 200.0;
+        final imageH = (maxH * 0.58).clamp(90.0, 160.0);
+
+        return Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Image
+              // Image area
               Container(
-                height: 140,
+                height: imageH,
                 decoration: BoxDecoration(
                   color: AppColors.divider,
                   borderRadius: const BorderRadius.vertical(
@@ -55,7 +44,7 @@ class ProductCard extends StatelessWidget {
                     Center(
                       child: Icon(
                         Icons.image,
-                        size: 48,
+                        size: (imageH * 0.35).clamp(28.0, 56.0),
                         color: AppColors.textSecondary.withOpacity(0.5),
                       ),
                     ),
@@ -69,8 +58,8 @@ class ProductCard extends StatelessWidget {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 4,
+                              color: Colors.black.withOpacity(0.08),
+                              blurRadius: 6,
                             ),
                           ],
                         ),
@@ -84,44 +73,48 @@ class ProductCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
+
+              // Details fill remaining space
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        const Icon(Icons.star, size: 16, color: Colors.amber),
-                        const SizedBox(width: 4),
-                        Text(
-                          rating.toString(),
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '$price ₸',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.primary,
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          const Icon(Icons.star, size: 16, color: Colors.amber),
+                          const SizedBox(width: 6),
+                          Text(
+                            rating.toString(),
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          const Spacer(),
+                          Text(
+                            '$price ₸',
+                            style: Theme.of(
+                              context,
+                            ).textTheme.titleLarge?.copyWith(color: AppColors.primary),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

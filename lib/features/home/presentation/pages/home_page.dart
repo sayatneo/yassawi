@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/story_item.dart';
 import '../widgets/service_item.dart';
@@ -30,7 +31,7 @@ class HomePage extends StatelessWidget {
                     'assets/logo.png',
                     width: 24,
                     height: 24,
-                    color: Colors.white, // қажет болса түс фильтрі
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'University Life',
+                      'Yassawi Life',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
@@ -53,17 +54,13 @@ class HomePage extends StatelessWidget {
               IconButton(
                 icon: Stack(
                   children: [
-                    const Icon(Icons.notifications_outlined),
+                    const Icon(IconlyBroken.notification),
                     Positioned(
                       right: 0,
                       top: 0,
-                      child: Container(
+                      child: SizedBox(
                         width: 8,
                         height: 8,
-                        decoration: const BoxDecoration(
-                          color: AppColors.accent,
-                          shape: BoxShape.circle,
-                        ),
                       ),
                     ),
                   ],

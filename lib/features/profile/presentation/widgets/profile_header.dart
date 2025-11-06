@@ -26,13 +26,6 @@ class ProfileHeader extends StatelessWidget {
               shape: BoxShape.circle,
               color: Colors.white,
               border: Border.all(color: Colors.white, width: 4),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
-                ),
-              ],
             ),
             child: const Icon(Icons.person, size: 50, color: Colors.grey),
           ),

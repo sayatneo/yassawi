@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../core/theme/app_colors.dart';
 import 'register_screen.dart';
 import '../../../main_navigation/presentation/pages/main_screen.dart';
@@ -55,25 +56,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Container(
                     padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      gradient: AppColors.primaryGradient,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary.withOpacity(0.3),
-                          blurRadius: 20,
-                          offset: const Offset(0, 10),
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.school,
-                      size: 60,
-                      color: Colors.white,
+                    child: const Image(
+                      image: AssetImage('assets/logo.png'),
+                      width: 120,
+                      height: 120,
                     ),
                   ),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 12),
                 // Заголовок
                 Text(
                   'Қош келдіңіз!',
@@ -94,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     hintText: 'student@ayu.edu.kz',
-                    prefixIcon: Icon(Icons.email_outlined),
+                    prefixIcon: Icon(IconlyBroken.message),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -114,12 +104,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: InputDecoration(
                     labelText: 'Құпия сөз',
                     hintText: '••••••••',
-                    prefixIcon: const Icon(Icons.lock_outline),
+                    prefixIcon: const Icon(IconlyBroken.password),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
+                            ? IconlyBroken.hide
+                            : IconlyBroken.show,
                       ),
                       onPressed: () {
                         setState(() => _obscurePassword = !_obscurePassword);
@@ -167,43 +157,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                // Разделитель
-                Row(
-                  children: [
-                    const Expanded(child: Divider()),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'немесе',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
-                    const Expanded(child: Divider()),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                // Социальные кнопки
-                Row(
-                  children: [
-                    Expanded(
-                      child: _SocialButton(
-                        icon: Icons.g_mobiledata,
-                        label: 'Google',
-                        onPressed: () {},
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _SocialButton(
-                        icon: Icons.apple,
-                        label: 'Apple',
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                // Регистрация
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

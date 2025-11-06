@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
         slivers: [
           // AppBar
           SliverAppBar(
-            expandedHeight: 200,
+            expandedHeight: 250,
             pinned: true,
             backgroundColor: AppColors.primary,
             flexibleSpace: FlexibleSpaceBar(
