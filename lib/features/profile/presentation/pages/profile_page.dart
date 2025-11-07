@@ -36,43 +36,6 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
 
-          // Stats
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: const [
-                  Expanded(
-                    child: ProfileStatCard(
-                      icon: Icons.book,
-                      label: 'Сабақтар',
-                      value: '12',
-                      color: AppColors.primary,
-                    ),
-                  ),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: ProfileStatCard(
-                      icon: Icons.assignment,
-                      label: 'Тапсырмалар',
-                      value: '8',
-                      color: AppColors.secondary,
-                    ),
-                  ),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: ProfileStatCard(
-                      icon: Icons.grade,
-                      label: 'GPA',
-                      value: '3.8',
-                      color: AppColors.accent,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
           // Menu
           SliverToBoxAdapter(
             child: Padding(
@@ -87,26 +50,8 @@ class ProfilePage extends StatelessWidget {
                     ),
                     const Divider(height: 1),
                     ProfileMenuItem(
-                      icon: Icons.calendar_today,
-                      title: 'Менің кестем',
-                      onTap: () {},
-                    ),
-                    const Divider(height: 1),
-                    ProfileMenuItem(
-                      icon: Icons.school,
-                      title: 'Үлгерім',
-                      onTap: () {},
-                    ),
-                    const Divider(height: 1),
-                    ProfileMenuItem(
                       icon: Icons.bookmark,
                       title: 'Сақталғандар',
-                      onTap: () {},
-                    ),
-                    const Divider(height: 1),
-                    ProfileMenuItem(
-                      icon: Icons.shopping_bag,
-                      title: 'Менің жарнамаларым',
                       onTap: () {},
                     ),
                   ],

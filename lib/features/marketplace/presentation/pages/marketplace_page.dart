@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/data/products_data.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/marketplace_product_card.dart';
+import 'cart_page.dart';
 
 class MarketplacePage extends StatefulWidget {
   const MarketplacePage({super.key});
@@ -33,8 +35,39 @@ class _MarketplacePageState extends State<MarketplacePage> {
             title: const Text('Маркетплейс'),
             actions: [
               IconButton(
-                icon: const Icon(Icons.shopping_cart_outlined),
-                onPressed: () {},
+                icon: Stack(
+                  children: [
+                    const Icon(Icons.shopping_cart_outlined),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      child: Container(
+                        width: 16,
+                        height: 16,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accent,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Center(
+                          child: Text(
+                            '3',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CartPage()),
+                  );
+                },
               ),
               const SizedBox(width: 8),
             ],
@@ -91,25 +124,21 @@ class _MarketplacePageState extends State<MarketplacePage> {
                 mainAxisSpacing: 12,
               ),
               delegate: SliverChildBuilderDelegate((context, index) {
+                final products = _selectedCategory == 0
+                    ? ProductsData.getAllProducts()
+                    : ProductsData.getProductsByCategory(_categories[_selectedCategory]);
+                
+                if (index >= products.length) return const SizedBox.shrink();
+                
                 return MarketplaceProductCard(
-                  imageUrl: '',
-                  title: 'Өнім ${index + 1}',
-                  price: '${(index + 1) * 1500}',
-                  rating: 4.5,
-                  seller: 'Сатушы ${index + 1}',
+                  product: products[index],
                 );
-              }, childCount: 12),
+              }, childCount: ProductsData.getAllProducts().length),
             ),
           ),
 
           const SliverToBoxAdapter(child: SizedBox(height: 24)),
         ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        backgroundColor: AppColors.primary,
-        icon: const Icon(Icons.add),
-        label: const Text('Жарнама жариялау'),
       ),
     );
   }
