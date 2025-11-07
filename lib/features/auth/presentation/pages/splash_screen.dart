@@ -89,10 +89,13 @@ class _SplashScreenState extends State<SplashScreen>
                         ),
                       ],
                     ),
-                    child: const Icon(
-                      Icons.school,
-                      size: 80,
-                      color: AppColors.primary,
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      child: const Image(
+                        image: AssetImage('assets/logo.png'),
+                        width: 120,
+                        height: 120,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 32),

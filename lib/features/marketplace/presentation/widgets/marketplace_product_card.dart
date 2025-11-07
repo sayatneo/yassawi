@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/models/product.dart';
 import '../pages/product_detail_page.dart';
 
 class MarketplaceProductCard extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String price;
-  final double rating;
-  final String seller;
+  final Product product;
 
   const MarketplaceProductCard({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-    required this.rating,
-    required this.seller,
+    required this.product,
   });
 
   @override
@@ -27,10 +20,7 @@ class MarketplaceProductCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => ProductDetailPage(
-                title: title,
-                price: price,
-                seller: seller,
-                rating: rating,
+                product: product,
               ),
             ),
           );
@@ -96,28 +86,20 @@ class MarketplaceProductCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          product.title,
                           style: Theme.of(context).textTheme.bodyLarge
                               ?.copyWith(fontWeight: FontWeight.w600),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 4),
-                        Text(
-                          seller,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyMedium?.copyWith(fontSize: 12),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '$price ₸',
+                          '${product.price} ₸',
                           style: Theme.of(
                             context,
                           ).textTheme.titleMedium?.copyWith(
@@ -134,7 +116,7 @@ class MarketplaceProductCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 2),
                             Text(
-                              rating.toString(),
+                              product.rating.toString(),
                               style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ],

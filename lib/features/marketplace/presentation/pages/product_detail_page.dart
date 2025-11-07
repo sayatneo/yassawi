@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/models/product.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  final String title;
-  final String price;
-  final String seller;
-  final double rating;
+  final Product product;
 
   const ProductDetailPage({
     super.key,
-    required this.title,
-    required this.price,
-    required this.seller,
-    this.rating = 4.5,
+    required this.product,
   });
 
   @override
@@ -92,7 +87,7 @@ class ProductDetailPage extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            '$price ₸',
+                            '${product.price} ₸',
                             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.bold,
@@ -110,7 +105,7 @@ class ProductDetailPage extends StatelessWidget {
                                 const Icon(Icons.star, size: 16, color: Colors.amber),
                                 const SizedBox(width: 4),
                                 Text(
-                                  rating.toString(),
+                                  product.rating.toString(),
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                               ],
@@ -120,7 +115,7 @@ class ProductDetailPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        title,
+                        product.title,
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       const SizedBox(height: 8),
@@ -150,14 +145,14 @@ class ProductDetailPage extends StatelessWidget {
                         child: const Icon(Icons.person, color: AppColors.textSecondary),
                       ),
                       const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              seller,
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.seller,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
                             Row(
                               children: [
                                 const Icon(Icons.check_circle, size: 14, color: Colors.green),
@@ -194,7 +189,7 @@ class ProductDetailPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        'Өте жақсы жағдайда оқулық. Барлық беттері таза, ешқандай белгілер жоқ. Өткен семестрде пайдаландым. Университет кітапханасында бұл кітапты табу қиын.\n\nОрналасқан жері: Кампус аймағы\nЖай-күйі: Жаңа секілді\nТапсырыс беру: Келісіммен\nБасқаларына беру: Мүмкін',
+                        '${product.description}\n\nОрналасқан жері: ${product.location}\nЖай-күйі: ${product.condition}\nТапсырыс беру: Келісіммен\nБасқаларына беру: Мүмкін',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
                       ),
                     ],
@@ -215,9 +210,9 @@ class ProductDetailPage extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 12),
-                      _DetailRow(label: 'Категория', value: 'Оқулықтар'),
-                      _DetailRow(label: 'Жай-күйі', value: 'Пайдаланылған'),
-                      _DetailRow(label: 'Орналасқан жері', value: 'Кампус'),
+                      _DetailRow(label: 'Категория', value: product.category),
+                      _DetailRow(label: 'Жай-күйі', value: product.condition),
+                      _DetailRow(label: 'Орналасқан жері', value: product.location),
                       _DetailRow(label: 'Жеткізу', value: 'Келісіммен'),
                     ],
                   ),
@@ -328,7 +323,7 @@ class ProductDetailPage extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('$seller сізбен хабарласады'),
+            Text('${product.seller} сізбен хабарласады'),
             const SizedBox(height: 16),
             TextField(
               decoration: InputDecoration(
@@ -372,10 +367,10 @@ class ProductDetailPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('$title'),
+            Text(product.title),
             const SizedBox(height: 8),
             Text(
-              'Бағасы: $price ₸',
+              'Бағасы: ${product.price} ₸',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.primary,
                   ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/data/products_data.dart';
 import '../widgets/story_item.dart';
 import '../widgets/service_item.dart';
 import '../widgets/product_card.dart';
 import '../widgets/news_card.dart';
+import '../../../marketplace/presentation/pages/marketplace_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -58,9 +60,13 @@ class HomePage extends StatelessWidget {
                     Positioned(
                       right: 0,
                       top: 0,
-                      child: SizedBox(
+                      child: Container(
                         width: 8,
                         height: 8,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accent,
+                          shape: BoxShape.circle,
+                        ),
                       ),
                     ),
                   ],
@@ -201,7 +207,14 @@ class HomePage extends StatelessWidget {
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MarketplacePage(),
+                            ),
+                          );
+                        },
                         child: const Text('Барлығы'),
                       ),
                     ],
@@ -213,17 +226,12 @@ class HomePage extends StatelessWidget {
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    itemCount: 5,
+                    itemCount: ProductsData.getFeaturedProducts().length,
                     separatorBuilder: (context, index) => const SizedBox(width: 12),
                     itemBuilder: (context, index) {
-                      return SizedBox(
-                        width: 160,
-                        child: ProductCard(
-                          imageUrl: '',
-                          title: 'Оқулық',
-                          price: '3500',
-                          rating: 4.5,
-                        ),
+                      final product = ProductsData.getFeaturedProducts()[index];
+                      return ProductCard(
+                        product: product,
                       );
                     },
                   ),
