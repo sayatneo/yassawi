@@ -18,8 +18,12 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
       margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -38,20 +42,38 @@ class NewsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image
-            Container(
-              height: 180,
-              decoration: BoxDecoration(
-                color: AppColors.divider,
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(16),
-                ),
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(15),
               ),
-              child: Center(
-                child: Icon(
-                  Icons.image,
-                  size: 64,
-                  color: AppColors.textSecondary.withOpacity(0.5),
+              child: Container(
+                height: 180,
+                decoration: BoxDecoration(
+                  color: AppColors.divider.withOpacity(0.5),
                 ),
+                child: imageUrl.isNotEmpty
+                    ? Image.network(
+                        imageUrl,
+                        width: double.infinity,
+                        height: 180,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Center(
+                            child: Icon(
+                              Icons.image_outlined,
+                              size: 64,
+                              color: AppColors.textSecondary.withOpacity(0.3),
+                            ),
+                          );
+                        },
+                      )
+                    : Center(
+                        child: Icon(
+                          Icons.image_outlined,
+                          size: 64,
+                          color: AppColors.textSecondary.withOpacity(0.3),
+                        ),
+                      ),
               ),
             ),
             Padding(
@@ -61,14 +83,18 @@ class NewsCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     description,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppColors.textSecondary,
+                        ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -76,12 +102,17 @@ class NewsCard extends StatelessWidget {
                   Row(
                     children: [
                       Icon(
-                        Icons.calendar_today,
+                        Icons.calendar_today_outlined,
                         size: 14,
                         color: AppColors.textSecondary,
                       ),
-                      const SizedBox(width: 4),
-                      Text(date, style: Theme.of(context).textTheme.bodyMedium),
+                      const SizedBox(width: 6),
+                      Text(
+                        date,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                      ),
                     ],
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/models/product.dart';
 import '../pages/product_detail_page.dart';
@@ -14,6 +15,10 @@ class MarketplaceProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -25,7 +30,7 @@ class MarketplaceProductCard extends StatelessWidget {
             ),
           );
         },
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,15 +61,9 @@ class MarketplaceProductCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 4,
-                            ),
-                          ],
                         ),
                         child: const Icon(
-                          Icons.favorite_border,
+                          IconlyBroken.heart,
                           size: 18,
                           color: AppColors.textSecondary,
                         ),

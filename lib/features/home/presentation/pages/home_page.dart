@@ -23,36 +23,24 @@ class HomePage extends StatelessWidget {
             backgroundColor: AppColors.surface,
             title: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: BorderRadius.circular(12),
+                Text(
+                  'Yastudent'.toUpperCase(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "dusha"
                   ),
-                  child: Image.asset(
-                    'assets/logo.png',
-                    width: 24,
-                    height: 24,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Yassawi Life',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    Text(
-                      'Сәлеметсіз бе! 👋',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
                 ),
               ],
             ),
             actions: [
+              IconButton(
+                icon: Stack(
+                  children: [
+                    const Icon(IconlyBroken.search),
+                  ],
+                ),
+                onPressed: () {},
+              ),
               IconButton(
                 icon: Stack(
                   children: [
@@ -73,7 +61,6 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: () {},
               ),
-              const SizedBox(width: 8),
             ],
           ),
 
@@ -82,17 +69,9 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    'Историялар',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ),
                 const SizedBox(height: 12),
                 SizedBox(
-                  height: 100,
+                  height: 150,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 16),

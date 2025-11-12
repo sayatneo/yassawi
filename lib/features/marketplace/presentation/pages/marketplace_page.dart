@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/data/products_data.dart';
 import '../widgets/category_chip.dart';
@@ -32,41 +33,22 @@ class _MarketplacePageState extends State<MarketplacePage> {
           SliverAppBar(
             pinned: true,
             backgroundColor: AppColors.surface,
-            title: const Text('Маркетплейс'),
+            centerTitle: false,
+            title: const Text('Маркетплейс', style: TextStyle(
+              fontFamily: "Atyp"
+            ),),
             actions: [
               IconButton(
                 icon: Stack(
                   children: [
-                    const Icon(Icons.shopping_cart_outlined),
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      child: Container(
-                        width: 16,
-                        height: 16,
-                        decoration: const BoxDecoration(
-                          color: AppColors.accent,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text(
-                            '3',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    const Icon(IconlyBroken.filter),
                   ],
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CartPage()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const CartPage()),
+                  // );
                 },
               ),
               const SizedBox(width: 8),
